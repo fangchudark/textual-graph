@@ -90,10 +90,10 @@ TextualGraph 是一个在 Godot 编辑器中可视化编辑节点图并支持从
 
 - 在启用插件时，因不明原因，每次编译程序集Godot都会创建两个[`NodeSelectWindow`](addons/TextualGraph/Editor/NodeSelectWindow.cs)类的新实例作为孤立节点，插件已确保其在每次编译后不会驻留在内存并在检测到其为孤立节点时[`执行了清理`](addons/TextualGraph/Editor/NodeSelectWindow.cs#L147)
 
-执行清理时将会收到如下消息
-```
-"[NodeSelectWindow] The current instance is not in the tree, and the instance has been released."
-```
+	执行清理时将会收到如下消息
+	```
+	"[NodeSelectWindow] The current instance is not in the tree, and the instance has been released."
+	```
 
 ## 协议
 
