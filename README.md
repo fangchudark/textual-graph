@@ -37,6 +37,8 @@ TextualGraph 是一个在 Godot 编辑器中可视化编辑节点图并支持从
 
 - `display_name` 字段该类型的节点要在节点选择菜单上显示的文本
 
+实现了新的自定义节点后，需要往此处添加对应配置，否则不会自动注册
+
 ### 导出文件扩展名配置
 
 [export_file_extensions.json](addons/TextualGraph/Config/export_file_extensions.json)
@@ -76,9 +78,9 @@ TextualGraph 是一个在 Godot 编辑器中可视化编辑节点图并支持从
 
 序列化和节点的实现示例见[Samples目录](addons/TextualGraph/Samples)
 
-添加自定义节点需实现 [`IGraphNodeFactory<T>`](addons/TextualGraph//Editor/EditorNode/IGraphNodeFactory.cs) 与 [`IGraphNode`](addons/TextualGraph/Editor/EditorNode/IGraphNode.cs)接口，新的节点实现类会在插件启用时编译程序集后自动注册
+添加自定义节点需实现 [`IGraphNodeFactory<T>`](addons/TextualGraph//Editor/EditorNode/IGraphNodeFactory.cs) 与 [`IGraphNode`](addons/TextualGraph/Editor/EditorNode/IGraphNode.cs)接口，存在于节点配置中的新节点实现类会在插件启用时编译程序集后自动注册
 
-除此之外，需要为每个自定义节点实现序列化器 [`NodeSerializer`](addons/TextualGraph/Serialization/NodeSerializer.cs)，输出的格式应与其他序列化器组件匹配。编译后自动注册。
+除此之外，需要为每个自定义节点实现序列化器 [`NodeSerializer`](addons/TextualGraph/Serialization/NodeSerializer.cs)，输出的格式应与其他序列化器组件匹配。存在于节点配置中对应节点的序列化器在编译后自动注册。
 
 实现 [`FragmentWriter`](addons/TextualGraph/Serialization/FragmentWriter.cs) 来定义在序列化时如何写入文件，在导出时该序列化器组件不是必须的。编译后自动注册。
 
