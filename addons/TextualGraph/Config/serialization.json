@@ -1,0 +1,6 @@
+{
+    "connection_parser" : "json",
+    "text_parser" : "json_array",
+    "fragment_writer": "json_array",
+    "allow_file_extensions":["*.json;JSON源文件"]
+}

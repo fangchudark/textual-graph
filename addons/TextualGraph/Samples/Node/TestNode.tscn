@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5exg80rqc7tf"]
+
+[ext_resource type="Script" uid="uid://rrs40hqp8yqk" path="res://addons/TextualGraph/Samples/TestNode.cs" id="1_5whku"]
+
+[node name="GraphNode" type="GraphNode" node_paths=PackedStringArray("_spinBox", "_textEdit")]
+offset_right = 314.0
+offset_bottom = 189.0
+title = "对话"
+slots_focus_mode = 1
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 1
+slot/1/left_color = Color(1, 0.39, 0.39, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 1
+slot/1/right_color = Color(1, 0.31, 0.31, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_5whku")
+_spinBox = NodePath("HBoxContainer/SpinBox")
+_textEdit = NodePath("HBoxContainer2/TextEdit")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "id"
+
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "对话"
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkyt17hpvojo2"]
+
+[ext_resource type="Script" uid="uid://b6cax2yp1xi5i" path="res://addons/TextualGraph/Samples/TestNode2.cs" id="1_4boje"]
+
+[node name="GraphNode" type="GraphNode" node_paths=PackedStringArray("_spinBox")]
+offset_right = 314.0
+offset_bottom = 189.0
+title = "选择"
+slots_focus_mode = 1
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_4boje")
+_spinBox = NodePath("HBoxContainer/SpinBox")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "id"
+
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10

@@ -1,0 +1,10 @@
+[
+    {
+        "name" : "dialogue",
+        "display_name" : "普通对话节点"
+    },
+    {
+        "name" : "choice",
+        "display_name" : "选择节点"
+    }
+]

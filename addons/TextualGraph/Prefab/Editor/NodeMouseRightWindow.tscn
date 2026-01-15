@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfs7d1ahqy3j7"]
+
+[ext_resource type="Script" uid="uid://c1tga5yw2yxdq" path="res://addons/TextualGraph/Editor/NodeMouseRightWindow.cs" id="1_4dr0g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dr0g"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="NodeMouseRightWindow" type="PopupPanel" node_paths=PackedStringArray("_delButton")]
+disable_3d = true
+oversampling_override = 1.0
+size = Vector2i(300, 300)
+visible = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_4dr0g")
+script = ExtResource("1_4dr0g")
+_delButton = NodePath("Control/VBoxContainer/DelButton")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 296.0
+offset_bottom = 296.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="DelButton" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "删除"
