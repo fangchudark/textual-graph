@@ -282,7 +282,7 @@ public sealed partial class GraphEditor : GraphEdit, ISerializationListener
 			if (_pendingIsFrom)
 			{
 				if (node is IGraphNode newNode &&
-					newNode.CanConnectWhenIsInput(pendingNode, _pendingPort, out var outputPort))
+					newNode.CanConnectWhenIsOutput(pendingNode, _pendingPort, out var outputPort))
 				{
 					EmitSignalConnectionRequest(
 						node.Name,
@@ -295,7 +295,7 @@ public sealed partial class GraphEditor : GraphEdit, ISerializationListener
 			else
 			{
 				if (node is IGraphNode newNode &&
-					newNode.CanConnectWhenIsOutput(pendingNode, _pendingPort, out var inputPort))
+					newNode.CanConnectWhenIsInput(pendingNode, _pendingPort, out var inputPort))
 				{
 					EmitSignalConnectionRequest(
 						pendingNode.Name,
