@@ -82,11 +82,11 @@ TextualGraph 是一个在 Godot 编辑器中可视化编辑节点图并支持从
 
 除此之外，需要为每个自定义节点实现序列化器 [`NodeSerializer`](addons/TextualGraph/Serialization/NodeSerializer.cs)，输出的格式应与其他序列化器组件匹配。存在于节点配置中对应节点的序列化器在编译后自动注册。
 
-实现 [`FragmentWriter`](addons/TextualGraph/Serialization/FragmentWriter.cs) 来定义在序列化时如何写入文件，在导出时该序列化器组件不是必须的。编译后自动注册。
+实现 [`FragmentWriter`](addons/TextualGraph/Serialization/FragmentWriter.cs) 来定义在序列化时如何写入文件。在导入时该序列化器组件不是必须的。编译后自动注册。
 
 实现 [`ConnectionParser`](addons/TextualGraph/Serialization/ConnectionParser.cs) 在处理序列化时对节点文本片段进行排序，来决定文本的写入顺序，以及从文本恢复节点图时根据 [`TextParser`](addons/TextualGraph/Serialization/TextParser.cs) 提取的语义片段以及 [`NodeSerializer`](addons/TextualGraph/Serialization/NodeSerializer.cs) 反序列化后的数据来恢复连接信息。编译后自动注册。
 
-实现 [`TextParser`](addons/TextualGraph/Serialization/TextParser.cs) 在导入文本文件时从文本中提取语义，解析为节点片段列表，它将为 [`ConnectionParser`](addons/TextualGraph/Serialization/ConnectionParser.cs) 恢复连接信息提供上下文
+实现 [`TextParser`](addons/TextualGraph/Serialization/TextParser.cs) 在导入文本文件时从文本中提取语义，解析为节点片段列表，它将为 [`ConnectionParser`](addons/TextualGraph/Serialization/ConnectionParser.cs) 恢复连接信息提供上下文。在导出时该序列化器组件不是必须的。编译后自动注册。
 
 ## 已知 BUG
 

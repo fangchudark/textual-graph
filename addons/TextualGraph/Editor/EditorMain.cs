@@ -109,6 +109,12 @@ public sealed partial class EditorMain : Control
 			return;
 		}
 
+		if (string.IsNullOrEmpty(config.ConnectionParser))
+		{			
+			ReportError("未指定导出所使用的连接信息解析器ID，请配置序列化配置文件");
+			return;
+		}
+		
 		var connectionParser = TextGraphSerializerRegistry.GetConnectionParser(config.ConnectionParser);
 		if (connectionParser == null)
 		{
@@ -192,10 +198,16 @@ public sealed partial class EditorMain : Control
 		var connectionParser = TextGraphSerializerRegistry.GetConnectionParser(config.ConnectionParser);
 		if (connectionParser == null)
 		{
-			ReportError($"未找到指定的连接信息解析器：{config.ConnectionParser}");		
+			ReportError($"未找到指定的连接信息解析器：{config.ConnectionParser}");
 			return;
 		}
-				
+
+		if (string.IsNullOrEmpty(config.FragmentWriter))
+		{
+			ReportError("未指定导出所使用的片段写入器ID，请配置序列化配置文件");
+			return;
+		}			
+		
 		var fragmentWriter = TextGraphSerializerRegistry.GetFragmentWriter(config.FragmentWriter);
 		if (fragmentWriter == null)
 		{
