@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace TextualGraph.Editor.EditorNode;
 
 /// <summary>
-/// 为图形节点元数据变化提供监听接口
+/// 允许在图形节点元数据变化时做出反应
 /// </summary>
 public interface IGraphNodeMetadataListener
 {
@@ -19,7 +19,7 @@ public interface IGraphNodeMetadataListener
         IGraphNode source,
         IReadOnlyDictionary<string, object> meta,
         bool isOutput,
-        long port
+        int port
     );
 }
 #endif

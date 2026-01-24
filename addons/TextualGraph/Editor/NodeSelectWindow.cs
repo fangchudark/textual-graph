@@ -1,5 +1,4 @@
 #if TOOLS
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TextualGraph.Editor.EditorNode;
@@ -14,7 +13,9 @@ public sealed partial class NodeSelectWindow : PopupPanel, ISerializationListene
     /// <summary>
     /// 选择节点时发出的事件，参数为节点的类型，对应<see cref="IGraphNodeFactory{T}.NodeName"/> 和 <see cref="IGraphNode.NodeType"/>
     /// </summary>
-    public event Action<string> OnNodeSelected;
+    /// <param name="nodeType">节点的类型，对应<see cref="IGraphNodeFactory{T}.NodeName"/> 和 <see cref="IGraphNode.NodeType"/></param>
+    [Signal]
+    public delegate void OnNodeSelectedEventHandler(string nodeType);
 
     /// <summary>
     /// 获取是否为一次性弹窗，如果true则创建一次节点后关闭
@@ -46,6 +47,7 @@ public sealed partial class NodeSelectWindow : PopupPanel, ISerializationListene
         }
     }
     
+
     public override void _Ready()
     {
         _searchEdit.TextChanged += OnSearchTextChanged;
@@ -111,7 +113,7 @@ public sealed partial class NodeSelectWindow : PopupPanel, ISerializationListene
                     Hide();
                     _oneshot = false;
                 }
-                OnNodeSelected?.Invoke(button.Name);
+                EmitSignalOnNodeSelected(button.Name);
             };
         }
     }

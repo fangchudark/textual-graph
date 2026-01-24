@@ -57,19 +57,15 @@ layout_mode = 2
 size_flags_vertical = 3
 grid_pattern = 1
 right_disconnects = true
-type_names = {
-0: "中文对话",
-1: "英语对话",
-2: "日语对话"
-}
+show_zoom_label = true
 script = ExtResource("2_o4k08")
-_nodeSelectWindow = NodePath("NodeSelectWindow")
-_nodeMouseRightWindow = NodePath("NodeMouseRightWindow")
+_nodeSelectWindow = NodePath("../NodeSelectWindow")
+_nodeMouseRightWindow = NodePath("../NodeMouseRightWindow")
 
-[node name="NodeSelectWindow" parent="VBoxContainer/GraphEdit" instance=ExtResource("3_8183b")]
+[node name="NodeSelectWindow" parent="VBoxContainer" instance=ExtResource("3_8183b")]
 visible = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_o4k08")
 
-[node name="NodeMouseRightWindow" parent="VBoxContainer/GraphEdit" instance=ExtResource("4_o4k08")]
+[node name="NodeMouseRightWindow" parent="VBoxContainer" instance=ExtResource("4_o4k08")]
 visible = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_gksac")

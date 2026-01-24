@@ -42,45 +42,47 @@ public interface IGraphNode
     /// </summary>
     /// <param name="outputPort">请求获取的自身输出端口索引</param>
     /// <returns>返回可用的最大连接数，-1表示不限制</returns>
-    int GetMaxOutputConnections(long outputPort);
+    int GetMaxOutputConnections(int outputPort);
 
     /// <summary>
     /// 获取自身指定输入端口的最大连接数
     /// </summary>
     /// <param name="inputPort">请求获取的自身输入端口索引</param>
     /// <returns>返回可用的最大连接数，-1表示不限制</returns>
-    int GetMaxInputConnections(long inputPort);
+    int GetMaxInputConnections(int inputPort);
 
     /// <summary>
     /// 获取自身指定输出端口的有效输出节点名称，即这个端口能输出给谁，谁能接受这个输入
     /// </summary>
     /// <param name="outputPort">请求获取的位于自身的输出端口</param>
     /// <returns>返回所有有效的输出节点名称，返回null表示接受任何连接，返回空集合表示不接受任何连接</returns>
-    HashSet<string> GetValidToNodeNamesForPort(long outputPort);
+    HashSet<string> GetValidToNodeNamesForPort(int outputPort);
 
     /// <summary>
     /// 获取自身指定输入端口的有效输入节点名称，即这个端口允许谁进行输入，谁能输出到这个端口
     /// </summary>
     /// <param name="inputPort">请求获取的请求获取的位于自身的输入端口</param>
     /// <returns>返回所有有效的输入节点名称，返回null表示接受任何连接，返回空集合表示不接受任何连接</returns>
-    HashSet<string> GetValidFromNodeNamesForPort(long inputPort);
+    HashSet<string> GetValidFromNodeNamesForPort(int inputPort);
 
     /// <summary>
-    /// 当自己作为输出节点时，检查给定的输入节点以及端口是否可以建立连接
+    /// 当自己作为输出节点（自身输出端请求连接其他节点）时，检查给定的输入节点以及端口是否可以建立连接
     /// </summary>
     /// <param name="input">请求建立连接的输入节点</param>
     /// <param name="inputPort">请求建立连接的输入端口</param>
     /// <param name="outputPort">输出参数，表示应该连接的位于自己的哪个输出端口</param>
+    /// <param name="requestedPort">请求建立连接的输出端口，-1表示自己刚被创建，请求指定初始连接端口</param>
     /// <returns>如果能够建立连接返回true，否则返回false</returns>
-    bool CanConnectWhenIsOutput(GraphNode input, long inputPort, out long outputPort);
+    bool CanConnectWhenIsOutput(GraphNode input, int inputPort, out int outputPort, int requestedPort);
 
     /// <summary>
-    /// 当自己作为输入节点时，检查给定的输出节点以及端口是否可以建立连接
+    /// 当自己作为输入节点（自身输入端请求从其他节点接受连接）时，检查给定的输出节点以及端口是否可以建立连接
     /// </summary>
     /// <param name="output">请求建立连接的输出节点</param>
     /// <param name="outputPort">请求建立连接的输出节点的输出端口</param>
     /// <param name="inputPort">输出参数，表示应该连接的位于自己的哪个输入端口</param>
+    /// <param name="requestedPort">请求建立连接的输入端口，-1表示自己刚被创建，请求指定初始连接端口</param>
     /// <returns>如果能够建立连接返回true，否则返回false</returns>
-    bool CanConnectWhenIsInput(GraphNode output, long outputPort, out long inputPort);
+    bool CanConnectWhenIsInput(GraphNode output, int outputPort, out int inputPort, int requestedPort);
 }
 #endif

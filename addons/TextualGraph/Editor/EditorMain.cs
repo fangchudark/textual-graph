@@ -7,6 +7,7 @@ using Godot;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace TextualGraph;
 
@@ -34,6 +35,8 @@ public sealed partial class EditorMain : Control
 
 	private Button _asWindowButton;
 
+	private Button _clearButton;
+
 	[Export]
 	private VBoxContainer _editorContainer;
 
@@ -51,6 +54,14 @@ public sealed partial class EditorMain : Control
 			SizeFlagsHorizontal = SizeFlags.ShrinkEnd
 		};
 		_asWindowButton.Pressed += OnAsWindowPressed;
+
+		_clearButton = new Button()
+		{
+			Text = "清空节点",
+			CustomMinimumSize = new Vector2(64, 32),
+			SizeFlagsHorizontal = SizeFlags.ShrinkEnd
+		};
+		_clearButton.Pressed += OnClearPressed;
 
 		_exportButton = new Button()
 		{
@@ -70,6 +81,7 @@ public sealed partial class EditorMain : Control
 
 		var menu = _graphEditor.GetMenuHBox();
 		menu.AddChild(_asWindowButton);
+		menu.AddChild(_clearButton);
 		menu.AddChild(_exportButton);
 		menu.AddChild(_importButton);
     }
@@ -93,6 +105,15 @@ public sealed partial class EditorMain : Control
 		}
 	}
 	
+	private void OnClearPressed()
+    {
+		foreach (var child in _graphEditor.GetChildren().Where(c => c.Name != "_connection_layer"))
+		{
+			child.QueueFree();
+		}
+		_graphEditor.ClearState();
+    }
+
 	private void OnImportPressed()
     {
 		var config = ConfigReader.DeserializeSerializeConfig();

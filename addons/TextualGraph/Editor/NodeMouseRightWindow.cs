@@ -21,7 +21,9 @@ public partial class NodeMouseRightWindow : PopupPanel
 	/// <summary>
     /// 动作按钮按下事件
     /// </summary>
-	public event Action<NodeRightAction> ActionButtonPressed;
+	/// <param name="action">动作</param>
+	[Signal]
+	public delegate void ActionButtonPressedEventHandler(NodeRightAction action);
 
 	[Export]
 	private Button _delButton;
@@ -33,7 +35,7 @@ public partial class NodeMouseRightWindow : PopupPanel
 
 	private void OnDelButtonPressed()
 	{
-		ActionButtonPressed?.Invoke(NodeRightAction.Delete);
+		EmitSignalActionButtonPressed(NodeRightAction.Delete);
 		Hide();
 	}
 }	

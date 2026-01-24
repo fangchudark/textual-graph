@@ -96,6 +96,14 @@ TextualGraph 是一个在 Godot 编辑器中可视化编辑节点图并支持从
 
 如果需要监听连接节点的元数据变化，可实现 [`IGraphNodeMetadataListener`](addons/TextualGraph/Editor/EditorNode/IGraphNodeMetadataListener.cs) 接口。当连接节点的元数据发生变更时，会触发 [OnConnectionNodeMetadataChanged](addons/TextualGraph/Editor/EditorNode/IGraphNodeMetadataListener.cs#L22) 方法，使当前节点能够相应地更新自己的状态。例如，[TestNode3](addons/TextualGraph/Samples/TestNode3.cs) 节点就实现了此接口，用于同步连接节点的 SpinBox 值并进行相应的调整。
 
+如果需要在连接节点被删除时做出反应，请实现 [INodeLifecycleListener](addons/TextualGraph/Editor/EditorNode/INodeLifecycleListener.cs) 接口
+
+如果需要节点再在反序列化后做出反应，请实现 [IDeserializeListener](addons/TextualGraph/Editor/EditorNode/IDeserializeListener.cs) 接口
+
+如果需要在节点接受连接和断开连接时做出反应，请实现 [IConnectionListener](addons/TextualGraph/Editor/EditorNode/IConnectionListener.cs) 接口
+
+如果需要节点请求画布移动视图到另一节点，请实现 [ICanvasMoveRequester](addons/TextualGraph/Editor/EditorNode/ICanvasMoveRequester.cs) 接口
+
 ## 已知 BUG
 
 - 在启用插件时，因不明原因，每次编译程序集Godot都会创建两个[`NodeSelectWindow`](addons/TextualGraph/Editor/NodeSelectWindow.cs)类的新实例作为孤立节点，插件已确保其在每次编译后不会驻留在内存并在检测到其为孤立节点时[`执行了清理`](addons/TextualGraph/Editor/NodeSelectWindow.cs#L147)
